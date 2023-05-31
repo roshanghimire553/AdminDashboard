@@ -17,7 +17,7 @@ export const Login = () => {
   const LoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/user/login", {
+      const res = await api.post("/user/Adminlogin", {
         email,
         password,
       });
@@ -26,11 +26,11 @@ export const Login = () => {
         localStorage.setItem("access_token", res.data.token);
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("login", true);
-        // setUser(res.data);
-        // debugger;
+
         if (res.data.role === "admin") {
           navigate("/dashboard");
           window.location.reload();
+          setUser(res.data);
         } else {
           toast.error("Admin id is required");
         }
@@ -55,7 +55,7 @@ export const Login = () => {
                 <img
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                   className="img-fluid"
-                  alt="Sample image"
+                  alt="Sample "
                 />
               </div>
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">

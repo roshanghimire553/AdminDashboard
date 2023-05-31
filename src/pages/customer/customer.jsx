@@ -4,6 +4,8 @@ import { Header } from "../../components/header/header";
 import api from "../../api";
 
 export const Customer = () => {
+  //forn getting users//
+
   const [user, setUsers] = useState([]);
   const fetchUsers = async () => {
     try {
@@ -19,10 +21,11 @@ export const Customer = () => {
     fetchUsers();
   }, []);
 
-  const DeleteUser = async (id) => {
+  //for deleting user//
+
+  const DeleteUser = async (id, role) => {
     try {
       const res = await api.delete(`/user/deleteUsers/${id}`);
-
       if (res.data) {
         fetchUsers();
         console.log("User deleted successfully");
@@ -64,18 +67,25 @@ export const Customer = () => {
                                 <td>{userData.name}</td>
                                 <td>{userData.email}</td>
                                 <td>{userData.role}</td>
-                                <button
-                                  className="btn btn-danger bg-primary custom-small-btn"
-                                  style={{
-                                    fontSize: "12px",
-                                    padding: " 4px 8px",
-                                  }}
-                                  onClick={() => {
-                                    DeleteUser(userData?._id);
-                                  }}
-                                >
-                                  <td>Delete</td>
-                                </button>
+
+                                <td>
+                                  {userData.role === "user" && (
+                                    <>
+                                      <button
+                                        className="btn btn-danger bg-primary custom-small-btn"
+                                        style={{
+                                          fontSize: "12px",
+                                          padding: " 4px 8px",
+                                        }}
+                                        onClick={() => {
+                                          DeleteUser(userData?._id);
+                                        }}
+                                      >
+                                        Delete
+                                      </button>
+                                    </>
+                                  )}
+                                </td>
                               </tr>
                             </>
                           );

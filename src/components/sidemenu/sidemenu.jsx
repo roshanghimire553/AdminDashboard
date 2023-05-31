@@ -82,7 +82,7 @@ export const Sidemenu = () => {
                     <i class="fas fa-sign-out-alt"></i>
 
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-danger"
                       onClick={() => {
                         localStorage.removeItem("login");
                         // Reload the current page
