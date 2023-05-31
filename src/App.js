@@ -25,14 +25,13 @@ function Navigation() {
               <Route exact path="/" Component={Login} />
             </>
           )}
-          {isAuthenticated && (
-            <>
-              <Route exact path="/dashboard" Component={Dashboard} />
-              <Route exact path="/customer" Component={Customer} />
-              <Route exact path="/package" Component={Packages} />
-              {/* <Route exact path="/Addpackage" Component={AddPackages} /> */}
-            </>
-          )}
+          {/* {isAuthenticated && (
+            <> */}
+          <Route exact path="/dashboard" Component={Dashboard} />
+          <Route exact path="/customer" Component={Customer} />
+          <Route exact path="/package" Component={Packages} />
+          {/* </>
+          )} */}
           {/* <Route exact path="*" Component={PageNotFound} /> */}
         </Routes>
       </BrowserRouter>

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Modal, Form, Button } from "antd";
 
 import api from "../../api";
+import axios from "axios";
 
 export const AddPackage1 = ({ visible, onClose }) => {
   const [form] = Form.useForm();
-
-  const [fileList, setFileList] = useState({});
   const [formData, setFormData] = useState({
     title: "",
     city: "",
@@ -32,18 +31,26 @@ export const AddPackage1 = ({ visible, onClose }) => {
       data.append("price", formData.price);
       data.append("photo", formData.photo);
       data.append("maxGroupSize", formData.maxGroupSize);
-      // console.log(api, "sdh");
-      console.log(data, "formdata");
-      console.log(formData, "formdata test ");
-
-      //const res = await api.post("tour/create", formData, fileList);
-
-      const res = await api.post("tour/create", data);
-
+      console.log(formData);
       debugger;
 
-      console.log(res);
-      console.log("Here : ");
+      const res = await axios.post(
+        "http://localhost:5000/api/tour/create",
+
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set the content type to FormData
+          },
+        }
+      );
+
+      //   const response = await axios.post('https://example.com/upload', formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data', // Set the content type to FormData
+      //   },
+      // });
+
       if (res) {
         setFormData(res.data.data);
       }
@@ -77,7 +84,6 @@ export const AddPackage1 = ({ visible, onClose }) => {
 
   const handleCancel = () => {
     form.resetFields();
-    setFileList([]);
     onClose();
   };
 
