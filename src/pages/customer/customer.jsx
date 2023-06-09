@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Sidemenu } from "../../components/sidemenu/sidemenu";
 import { Header } from "../../components/header/header";
 import api from "../../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Customer = () => {
   //forn getting users//
@@ -23,12 +25,12 @@ export const Customer = () => {
 
   //for deleting user//
 
-  const DeleteUser = async (id, role) => {
+  const DeleteUser = async (id) => {
     try {
       const res = await api.delete(`/user/deleteUsers/${id}`);
       if (res.data) {
         fetchUsers();
-        console.log("User deleted successfully");
+        toast.success(res.data.message);
       }
     } catch (error) {
       console.log(error);
@@ -37,6 +39,7 @@ export const Customer = () => {
 
   return (
     <>
+      <ToastContainer />
       <Header />
       <Sidemenu />
       <section style={{ marginLeft: "360px" }}>
@@ -72,7 +75,7 @@ export const Customer = () => {
                                   {userData.role === "user" && (
                                     <>
                                       <button
-                                        className="btn btn-danger bg-primary custom-small-btn"
+                                        className="btn btn-danger  custom-medium-btn"
                                         style={{
                                           fontSize: "12px",
                                           padding: " 4px 8px",

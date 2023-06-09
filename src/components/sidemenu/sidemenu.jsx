@@ -34,9 +34,9 @@ export const Sidemenu = () => {
               </li>
               <li>
                 <a className="waves-effect waves-dark" aria-expanded="false">
-                  <Link className="hide-menu" to="/table">
+                  <Link className="hide-menu" to="/category">
                     <i className="fa fa-table"></i>
-                    Tables
+                    Category
                   </Link>
                 </a>
               </li>
@@ -66,7 +66,7 @@ export const Sidemenu = () => {
                   to="#"
                   aria-expanded="false"
                 >
-                  <Link className="hide-menu" to="/bookings">
+                  <Link className="hide-menu" to="/booking">
                     <i className="fas fa-ticket-alt"></i>Booking
                   </Link>
                 </a>
