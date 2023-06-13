@@ -8,6 +8,7 @@ import { Packages } from "./pages/package/package";
 import { AddCategory } from "./pages/category/addCategory";
 import { Booking } from "./pages/booking/booking";
 import { UpdatePackage } from "./pages/package/updatePackage";
+import { AddReviews } from "./pages/reviews/reviews";
 
 function Navigation() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -30,6 +31,7 @@ function Navigation() {
           <Route exact path="/package" Component={Packages} />
           <Route exact path="/category" Component={AddCategory} />
           <Route exact path="/booking" Component={Booking} />
+          <Route exact path="/reviews" Component={AddReviews} />
           <Route exact path="/updatePackage/:id" Component={UpdatePackage} />
         </Routes>
       </BrowserRouter>
