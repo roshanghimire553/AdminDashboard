@@ -90,7 +90,7 @@ export const AddCategory = () => {
 
                           return (
                             <>
-                              <tr kry={id}>
+                              <tr key={id}>
                                 <td>{id + 1}</td>
                                 <td>{categoryData?.name}</td>
                                 <td>{categoryData?._id}</td>

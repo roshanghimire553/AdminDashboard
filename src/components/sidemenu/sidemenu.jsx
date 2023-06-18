@@ -79,6 +79,23 @@ export const Sidemenu = () => {
                   </Link>
                 </a>
               </li>
+              <li>
+                {" "}
+                <a className="waves-effect waves-dark" aria-expanded="false">
+                  <Link className="hide-menu" to="/getDays">
+                    <i class="fas fa-rocket"></i>Days
+                  </Link>
+                </a>
+              </li>
+              <li>
+                {" "}
+                <a className="waves-effect waves-dark" aria-expanded="false">
+                  <Link className="hide-menu" to="/customerMessage">
+                    <i class="fas fa-envelope"></i>
+                    Messages
+                  </Link>
+                </a>
+              </li>
 
               <div className="text-center mt-4">
                 <li>

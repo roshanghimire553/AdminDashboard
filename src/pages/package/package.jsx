@@ -93,9 +93,7 @@ export const Packages = () => {
                         <th>No of people</th>
                         <th>Category</th>
                         <th>Images</th>
-                        <th colSpan="2" className="text-center">
-                          Action
-                        </th>
+                        <th className="text-center">Action</th>
                       </tr>
                     </thead>
                     {/* {JSON.stringify(Tour)} */}
@@ -113,7 +111,6 @@ export const Packages = () => {
                                 <td>{TourData?.price}</td>
                                 <td>{TourData?.maxGroupSize}</td>
                                 <td>{TourData?.category?.name}</td>
-
                                 <td>
                                   <img
                                     className="img-fluid img-thumbnail rounded-pill"
@@ -122,40 +119,45 @@ export const Packages = () => {
                                     alt="hello"
                                   />
                                 </td>
+                                <td>
+                                  <button
+                                    className="btn btn-danger custom-medium-btn"
+                                    style={{
+                                      fontSize: "12px",
+                                      padding: "4px 8px",
+                                      margin: "5px 5px",
+                                    }}
+                                    onClick={() => {
+                                      Deletecard(TourData?._id);
+                                    }}
+                                  >
+                                    Delete
+                                  </button>
 
-                                <td
-                                  style={{
-                                    fontSize: "8px",
-                                    padding: " 10px 15px",
-                                  }}
-                                >
-                                  <td>
+                                  <Link to={`/updatePackage/${TourData._id}`}>
                                     <button
-                                      className="btn btn-danger  custom-medium-btn"
+                                      className="btn btn-danger custom-medium-btn"
                                       style={{
                                         fontSize: "12px",
-                                        padding: " 4px 8px",
-                                      }}
-                                      onClick={() => {
-                                        Deletecard(TourData?._id);
+                                        padding: "4px 8px",
+                                        margin: "5px 5px",
                                       }}
                                     >
-                                      Delete
+                                      Update
                                     </button>
-                                  </td>
-                                  <td>
-                                    <Link to={`/updatePackage/${TourData._id}`}>
-                                      <button
-                                        className="btn btn-danger  custom-medium-btn"
-                                        style={{
-                                          fontSize: "12px",
-                                          padding: " 4px 8px",
-                                        }}
-                                      >
-                                        Update
-                                      </button>
-                                    </Link>
-                                  </td>
+                                  </Link>
+                                  <Link to={`/AddDays/${TourData._id}`}>
+                                    <button
+                                      className="btn btn-danger custom-medium-btn"
+                                      style={{
+                                        fontSize: "12px",
+                                        padding: "4px 8px",
+                                        margin: "5px 5px",
+                                      }}
+                                    >
+                                      AddDays
+                                    </button>
+                                  </Link>
                                 </td>
                               </tr>
                             </>
