@@ -19,6 +19,7 @@ export const AddPackage1 = ({ visible, onClose }) => {
     distance: "",
     desc: "",
     price: "",
+    category: "",
     maxGroupSize: "",
   });
 
@@ -34,6 +35,7 @@ export const AddPackage1 = ({ visible, onClose }) => {
       data.append("distance", formData.distance);
       data.append("desc", formData.desc);
       data.append("price", formData.price);
+      data.append("category", formData.category);
       data.append("photo", selectedFile);
       data.append("maxGroupSize", formData.maxGroupSize);
       console.log(formData);

@@ -48,6 +48,19 @@ export const Booking = () => {
       toast.error("something went wrong");
     }
   };
+  const approvePayment = async (id) => {
+    try {
+      const res = await api.put(`Booking/payment/${id}`);
+      if (res.data) {
+        fetchBookings();
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      toast.error("something went wrong");
+    }
+  };
 
   return (
     <>
@@ -74,9 +87,8 @@ export const Booking = () => {
                         <th>GuestSize</th>
                         <th>Book Date</th>
                         <th>Total Price</th>
-                        <th colSpan="2" className="text-center">
-                          Action
-                        </th>
+                        <th className="text-center">Action</th>
+                        <th className="text-center">PaymentStatus</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -92,34 +104,37 @@ export const Booking = () => {
                               <td>{booking.guestSize}</td>
                               <td>{booking.bookAt}</td>
                               <td>{booking.totalPrice}</td>
-                              <td>
-                                <button
-                                  className="btn btn-danger custom-medium-btn"
-                                  style={{
-                                    fontSize: "12px",
-                                    padding: "4px 8px",
-                                  }}
-                                  onClick={() => {
-                                    deleteBooking(booking._id);
-                                  }}
-                                >
-                                  Delete
-                                </button>
-                              </td>
+
                               <td>
                                 {booking.status === "pending" ? (
-                                  <button
-                                    className="btn btn-danger custom-medium-btn"
-                                    style={{
-                                      fontSize: "12px",
-                                      padding: "4px 8px",
-                                    }}
-                                    onClick={() => {
-                                      approveBooking(booking._id);
-                                    }}
-                                  >
-                                    Approve
-                                  </button>
+                                  <>
+                                    {" "}
+                                    <button
+                                      className="btn btn-danger custom-medium-btn"
+                                      style={{
+                                        fontSize: "12px",
+                                        padding: "4px 8px",
+                                      }}
+                                      onClick={() => {
+                                        approveBooking(booking._id);
+                                      }}
+                                    >
+                                      Approve
+                                    </button>
+                                    <button
+                                      className="btn btn-danger custom-medium-btn"
+                                      style={{
+                                        margin: "5px",
+                                        fontSize: "12px",
+                                        padding: "4px 8px",
+                                      }}
+                                      onClick={() => {
+                                        deleteBooking(booking._id);
+                                      }}
+                                    >
+                                      Delete
+                                    </button>
+                                  </>
                                 ) : (
                                   <button
                                     className="btn btn-success custom-medium-btn"
@@ -130,6 +145,49 @@ export const Booking = () => {
                                     disabled
                                   >
                                     Approved
+                                  </button>
+                                )}
+                              </td>
+                              <td className="text-center">
+                                {booking.paymentStatus === "pending" ? (
+                                  <>
+                                    <button
+                                      className="btn btn-danger custom-medium-btn"
+                                      style={{
+                                        fontSize: "12px",
+                                        padding: "4px 8px",
+                                      }}
+                                      onClick={() => {
+                                        approvePayment(booking._id);
+                                      }}
+                                    >
+                                      Approve
+                                    </button>
+
+                                    <button
+                                      className="btn btn-danger custom-medium-btn"
+                                      style={{
+                                        margin: "5px",
+                                        fontSize: "12px",
+                                        padding: "4px 8px",
+                                      }}
+                                      onClick={() => {
+                                        deleteBooking(booking._id);
+                                      }}
+                                    >
+                                      Delete
+                                    </button>
+                                  </>
+                                ) : (
+                                  <button
+                                    className="btn btn-success custom-medium-btn"
+                                    style={{
+                                      fontSize: "12px",
+                                      padding: "4px 8px",
+                                    }}
+                                    disabled
+                                  >
+                                    paid
                                   </button>
                                 )}
                               </td>
